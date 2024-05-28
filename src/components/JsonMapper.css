@@ -1,0 +1,6 @@
+.svg-path {
+    stroke: red; /* Color of the line */
+    stroke-width: 2; /* Width of the line */
+    fill: none; /* No fill */
+  }
+  

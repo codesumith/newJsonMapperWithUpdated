@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import { RiHome2Fill, RiSettings2Fill, RiFileEditFill } from 'react-icons/ri';
 import RestEndpoint from "./RestEndPoint";
 import SchemaBuilder from "./SchemaBuilder";
 import JsonMapper from "./JsonMapper";
-
 
 function Home() {
   const [activeComponent, setActiveComponent] = useState(null);
@@ -19,8 +19,8 @@ function Home() {
         navigate("/schema-builder");
         break;
       case "JsonMapper":
-      navigate("/json-mapper");
-      break;
+        navigate("/json-mapper");
+        break;
       default:
         break;
     }
@@ -29,33 +29,36 @@ function Home() {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-3 bg-light border">
+        <div className="col-lg-3 col-md-4 bg-light border">
           <div className="d-flex flex-column p-3">
             <button
-              className="btn btn-primary mb-5 mt-5"
+              className={`btn btn-primary mb-3 ${activeComponent === "RestEndpoint" && "active"}`}
               onClick={() => handleNavigation("RestEndpoint")}
+              title="Rest Endpoint"
             >
-              Rest Endpoint
+              <RiHome2Fill className="me-2" /> Rest Endpoint
             </button>
             <button
-              className="btn btn-secondary mb-5"
+              className={`btn btn-secondary mb-3 ${activeComponent === "SchemaBuilder" && "active"}`}
               onClick={() => handleNavigation("SchemaBuilder")}
+              title="Schema Builder"
             >
-              Schema Builder
+              <RiFileEditFill className="me-2" /> Schema Builder
             </button>
             <button
-              className="btn btn-success mb-5"
+              className={`btn btn-success ${activeComponent === "JsonMapper" && "active"}`}
               onClick={() => handleNavigation("JsonMapper")}
+              title="Json Mapper"
             >
-              Json Mapper
+              <RiSettings2Fill className="me-2" /> Json Mapper
             </button>
           </div>
         </div>
-        <div className="col-9 border">
+        <div className="col-lg-9 col-md-8 border">
           <Routes>
             <Route path="/rest-endpoint" element={<RestEndpoint />} />
             <Route path="/schema-builder" element={<SchemaBuilder />} />
-            <Route path="/Json-mapper" element={<JsonMapper />} />
+            <Route path="/json-mapper" element={<JsonMapper />} />
           </Routes>
         </div>
       </div>
